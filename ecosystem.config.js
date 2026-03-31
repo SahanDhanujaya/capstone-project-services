@@ -1,43 +1,36 @@
 module.exports = {
-  apps: [
+  apps : [
     {
       name: "cloud-sql-auth-proxy",
+      // Ensure the path to the binary is correct (e.g., ./cloud-sql-proxy)
       script: "./cloud-sql-proxy",
-      args: "--private-ip --port=3306 tool-library-management:asia-southeast1:mysql-vm",
+      args: "tool-library-management:asia-southeast1:mysql-vm --private-ip",
       instances: 1,
-      exec_mode: "fork",
-      autorestart: true,
-      log_file: "./log/cloud-sql-proxy.log"
+      log_file: "./log/cloud-sql-proxy.log",
     },
-
     {
       name: "user-service",
-      script: "java",
-      args: "-jar ./user-service/target/user-service-0.0.1-SNAPSHOT.jar",
-      instances: 2,
-      exec_mode: "cluster",
-      autorestart: true,
-      log_file: "./log/user-service.log"
+      script: "./user-service/target/user-service-0.0.1-SNAPSHOT.jar",
+      interpreter: "java",
+      interpreter_args: "-jar",
+      log_file: "./log/user-service.log",
+      instances: 2
     },
-
     {
       name: "tool-inventory-service",
-      script: "java",
-      args: "-jar ./tool-inventory-service/target/tool-inventory-service-0.0.1-SNAPSHOT.jar",
-      instances: 2,
-      exec_mode: "cluster",
-      autorestart: true,
-      log_file: "./log/tool-inventory-service.log"
+      script: "./tool-inventory-service/target/tool-inventory-service-0.0.1-SNAPSHOT.jar",
+      interpreter: "java",
+      interpreter_args: "-jar",
+      log_file: "./log/tool-inventory-service.log",
+      instances: 2
     },
-
     {
       name: "borrow-service",
-      script: "java",
-      args: "-jar ./borrow-service/target/borrow-service-0.0.1-SNAPSHOT.jar",
-      instances: 2,
-      exec_mode: "cluster",
-      autorestart: true,
-      log_file: "./log/borrow-service.log"
-    }
+      script: "./borrow-service/target/borrow-service-0.0.1-SNAPSHOT.jar",
+      interpreter: "java",
+      interpreter_args: "-jar",
+      log_file: "./log/borrow-service.log",
+      instances: 2
+    },
   ]
-};
+}
