@@ -1,0 +1,9 @@
+[submodule "user-service"]
+	path = user-service
+	url = https://github.com/SahanDhanujaya/capstone-project-user-service.git
+[submodule "tool-inventory-service"]
+	path = tool-inventory-service
+	url = https://github.com/SahanDhanujaya/tool-inventory-service.git
+[submodule "borrow-service"]
+	path = borrow-service
+	url = https://github.com/SahanDhanujaya/capstone-projet-borrow-service.git
